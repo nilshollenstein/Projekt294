@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const formNewChore = document.forms.AddNewChore;
 	formNewChore.addEventListener('submit', (event) => {
 		event.preventDefault();
+		let chore = document.getElementById('newChore').value;
 
 		addNewChore(chore);
 	});
@@ -34,6 +35,7 @@ async function getAllTasks() {
 	try {
 		const response = await fetch('http://localhost:80/tasks', {
 			method: 'GET',
+			credentials: 'include',
 		});
 		if (!response.ok) {
 			throw new Error('Network response was not ok');
@@ -48,6 +50,7 @@ async function getSpecificTask(id) {
 	try {
 		const response = await fetch(`http://localhost:80/task/${id}`, {
 			method: 'GET',
+			credentials: 'include',
 		});
 		if (!response.ok) {
 			throw new Error('Network response was not ok');
@@ -66,15 +69,23 @@ async function addNewChore(chore) {
 	try {
 		const responseData = await fetch('http://localhost:80/tasks', {
 			method: 'GET',
+			credentials: 'include',
 		});
 		if (!responseData.ok) {
 			throw new Error('Network response was not ok');
 		}
 		const data = await responseData.json();
-		const lastID = data[data.length - 1].id;
+		let lastID;
+		if (lastID >= 0 || lastID != undefined) {
+			lastID = data[data.length - 1].id;
+		} else {
+			lastID = 1;
+		}
 		let id = lastID + 1;
 		const response = await fetch('http://localhost:80/tasks', {
 			method: 'POST',
+			credentials: 'include',
+
 			headers: new Headers({
 				'content-type': 'application/json',
 			}),
@@ -131,6 +142,7 @@ async function getSpecificTaskForEdit(id) {
 	try {
 		const response = await fetch(`http://localhost:80/task/${id}`, {
 			method: 'GET',
+			credentials: 'include',
 		});
 		if (!response.ok) {
 			throw new Error('Network response was not ok');
@@ -144,6 +156,8 @@ async function getSpecificTaskForEdit(id) {
 async function changeTask(newTitle, id) {
 	const response = await fetch('http://localhost:80/tasks', {
 		method: 'PUT',
+		credentials: 'include',
+
 		headers: new Headers({
 			'content-type': 'application/json',
 		}),
@@ -153,7 +167,7 @@ async function changeTask(newTitle, id) {
 			title: newTitle,
 		}),
 	});
-	getSpecificTask(id);
+
 	if (!response.ok) {
 		throw new Error('Network response was not ok');
 	}
@@ -165,6 +179,8 @@ async function changeTask(newTitle, id) {
 async function deleteChore(id) {
 	const response = await fetch(`http://localhost:80/task/${id}`, {
 		method: 'DELETE',
+		credentials: 'include',
+
 		headers: new Headers({
 			'content-type': 'application/json',
 		}),

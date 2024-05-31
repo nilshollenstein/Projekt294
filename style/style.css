@@ -5,6 +5,9 @@
 	
 	
 }
+body{
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 #actions{
 	width: 50%;
 }
@@ -22,4 +25,7 @@ td {
 }
 .hidden{
 	display: none;
+}
+input:invalid{
+	border-color: red;
 }
