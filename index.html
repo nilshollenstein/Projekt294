@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Chores-Application</title>
+		<script src="./script.js"></script>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<h1>Chores</h1>
+		<div id="body2">
+			<div id="actions">
+				<form action="" name="formAllTasks">
+					<button name="getAllTasks" id="getAllTasks" type="submit">
+						Show all Chores
+					</button>
+				</form>
+
+				<br /><br />
+				<form
+					action="index.html"
+					method="post"
+					name="selectSingleChore"
+				>
+					<label for="singleChore">Choose chore by ID</label><br />
+					<input
+						type="number"
+						name="singleChore"
+						id="singleChore"
+					/><button type="submit">Get</button>
+				</form>
+				<button onclick="setEditPartsVisible()">Edit</button>
+				<form action="" name="editForm">
+					<br /><label class="hidden edit" for="editChore"
+						>New Text</label
+					><br />
+					<input
+						type="text"
+						class="hidden edit"
+						id="editChore"
+						name="editChore"
+					/>
+					<button type="submit" class="hidden edit">Confirm</button>
+				</form>
+
+				<h4>Add new chore</h4>
+
+				<form action="index.html" method="post" name="AddNewChore">
+					<label for="newChore">Chore-title</label><br />
+					<input type="text" name="newChore" id="newChore" /><button
+						type="submit"
+					>
+						Add
+					</button>
+				</form>
+
+				<h4>Delete a chore</h4>
+				<form action="" name="formDeleteChore">
+					<label class="edit" for="deleteChore"
+						>Enter the ID of the chore to delete</label
+					><br />
+					<input
+						type="number"
+						class="delete"
+						id="deleteChore"
+						name="deleteChore"
+					/>
+					<button type="submit" class="delete">Confirm</button>
+				</form>
+			</div>
+
+			<br />
+			<table id="allChores">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Task</th>
+						<th>Completed</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</body>
+</html>

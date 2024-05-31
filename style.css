@@ -1,0 +1,25 @@
+#body2{
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	
+	
+}
+#actions{
+	width: 50%;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th,
+td {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+	
+}
+.hidden{
+	display: none;
+}
